@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es" class="no-js">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Youniverse — lo que eres depende de quién mire</title>
+
+  <meta name="description" content="Un viaje interactivo por las escalas de la realidad. A cada rango eres algo distinto: célula, cuerpo, ciudad, planeta, galaxia… y átomo, partícula, casi nada. Tú las contienes todas." />
+  <meta name="author" content="Inspirado en el «Youniverse» de Douglas Harding" />
+  <meta name="theme-color" content="#0a0c18" />
+  <link rel="canonical" href="https://fabianimv.github.io/youniverse/" />
+
+  <!-- Open Graph (WhatsApp / Facebook) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Youniverse" />
+  <meta property="og:title" content="Youniverse — lo que eres depende de quién mire" />
+  <meta property="og:description" content="Un viaje por las escalas de la realidad. A cada distancia eres algo distinto. En ningún rango hay un límite donde termines tú y empiece el resto." />
+  <meta property="og:url" content="https://fabianimv.github.io/youniverse/" />
+  <meta property="og:locale" content="es_ES" />
+  <meta property="og:image" content="https://fabianimv.github.io/youniverse/assets/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Un punto de luz en un campo negro y profundo. Youniverse." />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Youniverse — lo que eres depende de quién mire" />
+  <meta name="twitter:description" content="Un viaje por las escalas de la realidad. A cada distancia eres algo distinto." />
+  <meta name="twitter:image" content="https://fabianimv.github.io/youniverse/assets/og.png" />
+
+  <!-- Fuentes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..500;1,9..144,300..500&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#cierre-texto">Saltar al cierre del recorrido</a>
+
+  <!-- Capas de render -->
+  <div id="stage" aria-hidden="true">
+    <canvas id="depth"></canvas>
+    <canvas id="field"></canvas>
+  </div>
+
+  <!-- Texto del recorrido (capa visible y accesible) -->
+  <main id="overlay">
+    <section class="scene" data-id="umbral" aria-label="Umbral">
+      <p class="phrase">Lo que eres depende de <em>quién mire</em>, y desde dónde.</p>
+      <p class="sub">Empieza aquí, en el centro. Y aléjate.</p>
+    </section>
+
+    <section class="scene" data-id="piel">
+      <p class="phrase">A esta distancia eres <em>piel</em>.</p>
+    </section>
+
+    <section class="scene" data-id="celulas">
+      <p class="phrase">Más cerca: <em>células</em>. Un país de células, ninguna eres «tú».</p>
+    </section>
+
+    <section class="scene" data-id="moleculas">
+      <p class="phrase">Más cerca: moléculas. <em>Átomos</em>.</p>
+    </section>
+
+    <section class="scene" data-id="vacio">
+      <p class="phrase">Más cerca aún: casi puro <em>espacio vacío</em>. En el corazón de cada átomo, casi nada.</p>
+    </section>
+
+    <section class="scene" data-id="humano">
+      <p class="phrase">Y a un metro y medio, este rango <em>improbable</em>: apareces como una persona. Una cara, un nombre. Sólo aquí.</p>
+    </section>
+
+    <section class="scene" data-id="habitacion">
+      <p class="phrase">Aléjate: una <em>habitación</em>. Eres una figura en un cuarto.</p>
+    </section>
+
+    <section class="scene" data-id="ciudad">
+      <p class="phrase">Más lejos: una <em>ciudad</em> encendida de noche. Ya no se te distingue.</p>
+    </section>
+
+    <section class="scene" data-id="tierra">
+      <p class="phrase">Más lejos: la <em>Tierra</em> entera. Un punto azul. Tú, aquí, indistinguible.</p>
+    </section>
+
+    <section class="scene" data-id="solar">
+      <p class="phrase">Más lejos: el <em>sistema solar</em>. Una mota alrededor de una estrella común.</p>
+    </section>
+
+    <section class="scene" data-id="galaxia">
+      <p class="phrase">Más lejos: la <em>galaxia</em>. Doscientos mil millones de soles.</p>
+    </section>
+
+    <section class="scene" data-id="red">
+      <p class="phrase">Más lejos: la <em>red cósmica</em>. Filamentos de galaxias como neuronas.</p>
+    </section>
+
+    <section class="scene scene--close" data-id="cierre" id="cierre-texto">
+      <p class="phrase">En ningún rango encontraste un límite donde <em>terminaras tú</em> y empezara el resto.</p>
+      <p class="sub">Eres no-cosa en el centro, y todo en la distancia. No me creas: acabas de recorrerlo.</p>
+      <div class="close-links">
+        <a class="sibling-link" href="https://fabianimv.github.io/rostro-original/">¿Y en el mismo centro? Mira por ti mismo →</a>
+        <p class="credit">
+          Inspirado en el «Youniverse» de Douglas Harding
+          (<a href="https://www.headless.org/" rel="noopener" target="_blank">headless.org</a>), de uso libre.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <!-- HUD: orden de magnitud + etiqueta -->
+  <aside id="hud" aria-hidden="true">
+    <div class="hud-rule"></div>
+    <div class="hud-mag" id="hud-mag"></div>
+    <div class="hud-label" id="hud-label"></div>
+  </aside>
+
+  <!-- Indicación de scroll -->
+  <div id="scroll-hint" aria-hidden="true">
+    <span class="hint-text">desplázate</span>
+    <span class="hint-arrow"></span>
+  </div>
+
+  <!-- Pantalla de carga -->
+  <div id="loader"><span class="dot"></span></div>
+
+  <!-- Genera la longitud de scroll (escenario fijo) -->
+  <div id="spacer"></div>
+
+  <!-- Texto íntegro para lectores de pantalla / sin JavaScript -->
+  <div class="sr-journey nojs-fallback">
+    <h1>Youniverse</h1>
+    <p>Lo que eres depende de quién mire, y desde dónde. Hacia adentro eres piel,
+    luego células, moléculas, átomos y, en el corazón de cada átomo, casi nada.
+    A un metro y medio apareces como una persona. Hacia afuera eres una figura en
+    un cuarto, una ciudad de noche, la Tierra como un punto azul, una mota en el
+    sistema solar, la galaxia, la red cósmica. En ningún rango encontraste un
+    límite donde terminaras tú y empezara el resto.</p>
+  </div>
+
+  <!-- Stack vía CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js" defer></script>
+  <script src="js/scenes.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>
